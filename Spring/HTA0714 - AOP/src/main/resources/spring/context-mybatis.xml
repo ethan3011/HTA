@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+		
+		<!-- spring폴더 안에 있는 모든 properties 파일 읽어오기 -->
+		<context:property-placeholder location="classpath:/spring/*.properties"/>
+		
+		<!--  DBCP 생성 및 연결 -->
+		<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+				p:driverClassName="${db.driverClassName}"
+				p:url="${db.url}"
+				p:username="${db.username}"
+				p:password="${db.password}" />
+				
+		<!-- SqlSessionFacotry 객체 생성 -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
+				p:dataSource-ref="dataSource"
+				p:mapperLocations="classpath:/mybatis/mappers/*.xml"
+				p:configLocation="classpath:/mybatis/mybatis-config.xml"/>
+				
+		<!-- sqlSessionFacotry를 Mapper와 연결 -->
+		<mybatis-spring:scan base-package="com.sample.mapper" factory-ref="sqlSessionFactory"/>
+		
+		<!-- service의 모든 Annotation 읽어오기 -->
+		<context:annotation-config />
+		<context:component-scan base-package="com.sample.service" />
+		
+		<!-- @Aspect가 적용된 빈을 Aspect로 사용할 수 있게한다. -->
+		<aop:aspectj-autoproxy />
+		
+		<!-- com.sample.adivce의 모든 Annotation 읽어오기-->
+		<context:component-scan base-package="com.sample.advice"></context:component-scan>
+</beans>

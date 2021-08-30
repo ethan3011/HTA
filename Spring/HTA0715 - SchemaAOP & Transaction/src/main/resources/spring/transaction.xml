@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		
+		<!-- Annotation 안에 등록된  bean을 활성화 한다.-->
+		<context:annotation-config />
+		
+		<!-- com.sample.service에 있는 Annotation을 읽어서 스프링 컨테이너에 등록한다.-->
+		<context:component-scan base-package="com.sample.service" />
+		
+		<!-- properties 파일들을 읽어온다. -->
+		<context:property-placeholder location="classpath:/spring/*.properties"/>
+		
+		<!-- DBCP를 활성화 하고 DB에 연결한다. -->
+		<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+				p:driverClassName="${db.driverClassname}"
+				p:url="${db.url}"
+				p:username="${db.username}"
+				p:password="${db.password}" />
+		
+		<!-- SqlSessionFactory를 생성 및 설정한다. -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+			p:dataSource-ref="dataSource"
+			p:configLocation="classpath:/mybatis/mybatis-config.xml"
+			p:mapperLocations="classpath:/mybatis/mappers/*.xml" />
+		
+		<!-- com.sample.mapper에 있는 인터페이스를 sqlSessionFacotry와 연결한다. -->
+		<mybatis-spring:scan base-package="com.sample.mapper" factory-ref="sqlSessionFactory"/>
+		
+		<!--
+			TransactionManager를 빈으로 등록하기
+			* spring-jdbc, ibatis, mybatis 기술로 db access를 하는 경우 DataSourceTransactionManager 등록한다.
+		 -->
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
+				p:dataSource-ref="dataSource" />
+		<!-- 
+			Annotation 기반으로 Transaction을 처리하게 한다.
+			@Transactional Annotation을 추가된 곳이 실행될 때 마다 Transaction처리를 실행한다.
+		 -->
+		<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

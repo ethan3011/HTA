@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 
+	namespace
+		* 이름 충돌을 방지한다.
+ -->
+<mapper namespace="com.sample.mapper.GameMapper">
+	
+	<insert id="insertNewGame" parameterType="com.sample.vo.Game">
+		insert into sample_games
+			(sample_game_no,
+			 sample_game_name,
+			 sample_game_price,
+			 sample_game_discount_price,
+			 sample_game_describe,
+			 sample_game_stock,
+			 sample_game_brand
+			  )
+		  values
+		  	(
+				game_no_seq.nextval,
+				#{name},
+				#{price},
+				#{discountPrice},
+				#{describe},
+				#{stock},
+				#{brand}
+		  	)
+	</insert>
+	
+	<update id="updateGame" parameterType="com.sample.vo.Game">
+		update sample_games
+		set
+			sample_game_name = #{name},
+			sample_game_price = #{price},
+			sample_game_discount_price = #{discountPrice},
+			sample_game_describe = #{describe},
+			sample_game_stock = #{stock},
+			sample_game_brand = #{brand},
+			sample_created_date = #{createdDate}
+		where
+			sample_game_no = #{no}
+	</update>
+	
+	<delete id="deleteGameByGameNo" parameterType="int">
+		delete from sample_games
+		where sample_game_no = #{value}
+	</delete>
+	
+	<select id="getAllGames" resultType="com.sample.vo.Game">
+		select
+			sample_game_no 				 as no,
+			sample_game_name			 as name,
+			sample_game_price			 as price,
+			sample_game_discount_price	 as discountPrice,
+			sample_game_describe		 as describe,
+			sample_game_stock 			 as stock,
+			sample_game_brand 			 as brand,
+			sample_created_date			 as createdDate
+		from
+			sample_games
+	</select>
+	
+	<select id="getGameByGameNo" parameterType="int" resultType="com.sample.vo.Game">
+		select
+			sample_game_no 				as no,
+			sample_game_name 			as name,
+			sample_game_price 			as price,
+			sample_game_discount_price 	as discountPrice,
+			sample_game_describe 		as describe,
+			sample_game_stock 			as stock,
+			sample_game_brand 			as brand,
+			sample_created_date 		as createdDate
+		from
+			sample_games
+		where
+			sample_game_no = #{value}
+	</select>
+</mapper>

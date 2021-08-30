@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.dao.GameDao">
+	
+	<select id="getAllGames" resultType="com.sample.vo.Game">
+		select
+			SAMPLE_GAME_NO					as no,
+			SAMPLE_GAME_NAME				as name,
+			SAMPLE_GAME_PRICE				as price,
+			SAMPLE_GAME_DISCOUNT_PRICE		as discountPrice,
+			SAMPLE_GAME_DESCRIBE			as describe,
+			SAMPLE_GAME_STOCK				as stock,
+			SAMPLE_GAME_BRAND				as brand,
+			SAMPLE_CREATED_DATE				as createdDate
+		from
+			SAMPLE_GAMES
+		order by SAMPLE_GAME_NO asc
+	</select>
+	
+	<select id="getGameByNo" parameterType="int" resultType="com.sample.vo.Game">
+		select
+			SAMPLE_GAME_NO					as no,
+			SAMPLE_GAME_NAME				as name,
+			SAMPLE_GAME_PRICE				as price,
+			SAMPLE_GAME_DISCOUNT_PRICE		as discountPrice,
+			SAMPLE_GAME_DESCRIBE			as describe,
+			SAMPLE_GAME_STOCK				as stock,
+			SAMPLE_GAME_BRAND				as brand,
+			SAMPLE_CREATED_DATE				as createdDate
+		from
+			SAMPLE_GAMES
+		where
+			SAMPLE_GAME_NO = #{value}
+	</select>
+</mapper>

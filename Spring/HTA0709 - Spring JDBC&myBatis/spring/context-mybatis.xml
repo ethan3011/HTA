@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+		
+		<!-- 데이터베이스의 정보가 담긴 db.properties를 추가한다. -->
+		<context:property-placeholder location="classpath:/spring/db.properties"/>
+		
+		<!--db.properties에 있는 값을 ${}로 감싸서 dataSoruce(basicDataSource)에 넣어준다. -->
+		<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
+			p:driverClassName="${db.driverClassName}"
+			p:url="${db.url}"
+			p:username="${db.username}"
+			p:password="${db.password}">
+		</bean>
+		
+		<!-- sqlSessionFactory객체 획득 / config위치 추가 / mapper 위치 추가  -->
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+			p:dataSource-ref="dataSource"
+			p:configLocation="classpath:/mybatis/mybatis-config.xml"
+			p:mapperLocations="classpath:/mybatis/mappers/*.xml" />
+			
+		<!-- sqlSessionFactory를 참조하여 mapper에 있는 interface를 스프링컨테이너의 빈으로 추가한다. -->
+		<mybatis-spring:scan base-package="com.sample.mapper" factory-ref="sqlSessionFactory"/>
+		
+		<!--  업무로직이 구현되어 있는 service패키지를 scan하여 모든 값을 스프링컨테이너의 빈으로 추가한다. -->
+		<context:component-scan base-package="com.sample.service" />
+</beans>

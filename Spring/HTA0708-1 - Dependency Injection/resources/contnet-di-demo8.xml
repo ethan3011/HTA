@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+		<bean id="sample" class="com.sample.di.demo8.Sample">
+			<property name="categories">
+				<list>
+					<value>치즈돈까스</value>
+					<value>용가리치킨</value>
+					<value>슈퍼파파피자</value>
+					<value>호식이두마리치킨</value>
+				</list>
+			</property>
+			
+			<property name="snsList">
+				<list>
+					<ref bean="instagram"/>
+					<ref bean="facebook"/>
+				</list>
+			</property>
+			
+			<property name="snsMap">
+				<map>
+					<entry>
+						<key><value>insta</value></key>
+						<ref bean="instagram" />
+					</entry>
+					<entry>
+						<key><value>facebook</value></key>
+						<ref bean="facebook" />
+					</entry>
+				</map>
+			</property>
+		</bean>
+		
+		<bean id="instagram" class="com.sample.di.demo8.Instagram" />
+		<bean id="facebook" class="com.sample.di.demo8.Facebook" />
+
+</beans>

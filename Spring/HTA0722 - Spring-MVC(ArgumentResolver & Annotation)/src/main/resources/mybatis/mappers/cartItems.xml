@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.dao.CartItemDao">
+	
+	<insert id="addNewCartItem" parameterType="com.sample.vo.CartItem">
+		insert into SAMPLE_GAME_CART_ITEMS
+		(item_no, user_id, product_no)
+		values
+		(cart_seq.nextval, #{id}, #{productNo})
+	</insert>
+	
+	<update id="updateCartItem" parameterType="com.sample.vo.CartItem">
+		update
+			SAMPLE_GAME_CART_ITEMS
+		set
+			ITEM_AMOUNT = #{amount}
+		where
+			ITEM_NO = #{no}
+	</update>
+	
+	<select id="getCartItem" resultType="com.sample.vo.CartItem">
+		select
+			ITEM_NO				as no,
+			USER_ID				as id,
+			PRODUCT_NO			as productNo,
+			ITEM_AMOUNT			as amount,
+			ITEM_CREATED_DATE	as createdDate
+		from
+			SAMPLE_GAME_CART_ITEMS
+		where
+			USER_ID = #{userId}
+		and
+			PRODUCT_NO = #{productNo}
+	</select>
+	
+	<select id="getCartItemById" parameterType="com.sample.vo.CartItem" resultType="hashmap">
+		select
+            A.item_no										as itemNo,
+            A.item_amount									as amount,
+            B.sample_game_no								as no,
+            B.sample_game_name								as name,
+            B.sample_game_price								as price,
+            B.sample_game_discount_price					as discountPrice,
+            A.item_amount * B.SAMPLE_game_discount_price	as orderPrice
+		from
+			SAMPLE_GAME_CART_ITEMS A, SAMPLE_GAMES B
+        where
+            A.product_no = b.sample_game_no
+        and
+            A.user_id = #{value}
+		order by
+			B.sample_game_name asc
+	</select>
+</mapper>
