@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boards">
+
+	<insert id="insertBoard" parameterType="com.sample.vo.Board">
+		insert into sample_boards
+		(board_no, board_title, board_content, board_view_count,user_id)
+		values
+		(board_seq.nextval, #{title}, #{content}, #{viewCount}, #{userId})
+	</insert>
+	
+	<select id="getAllBoards" resultType="com.sample.vo.Board">
+		select
+			board_no				as no,
+			board_title				as title,
+			board_content			as content,
+			board_view_count		as viewCount,
+			board_deleted			as deleted,
+			user_id					as userId,
+			board_created_date		as createdDate,
+			board_updated_date		as updatedDate,
+			board_deleted_date		as deletedDate
+		from sample_boards
+		where board_deleted = 'N'
+	</select>
+	
+	<select id="getBoards" parameterType="map" resultType="com.sample.vo.Board">
+		select
+			board_no				as no,
+			board_title				as title,
+			board_content			as content,
+			board_view_count		as viewCount,
+			board_deleted			as deleted,
+			user_id					as userId,
+			board_created_date		as createdDate,
+			board_updated_date		as updatedDate,
+			board_deleted_date		as deletedDate
+		from (select row_number() over (order by board_no desc) row_no, A.*
+			  from sample_boards A where board_deleted = 'N')
+		where row_no between #{beginIndex} and #{endIndex}				
+	</select>
+	
+	<select id="getBoardByBoardNo" parameterType="int" resultType="com.sample.vo.Board">
+		select
+			board_no				as no,
+			board_title				as title,
+			board_content			as content,
+			board_view_count		as viewCount,
+			board_deleted			as deleted,
+			user_id					as userId,
+			board_created_date		as createdDate,
+			board_updated_date		as updatedDate,
+			board_deleted_date		as deletedDate
+		from sample_boards
+		where board_no = #{value}
+		and	  board_deleted = 'N'
+	</select>
+	
+	<update id="updateBoard" parameterType="com.sample.vo.Board">
+	update sample_boards
+	set
+			board_title			=	#{title},
+			board_content		=	#{content},
+			board_view_count	=	#{viewCount},
+			board_deleted		=	#{deleted},
+			user_id				=	#{userId},
+			board_created_date	=	#{createdDate},
+			board_updated_date	=	#{updatedDate},
+			board_deleted_date	=	#{deletedDate}
+	where   board_no = #{no}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		delete from sample_boards
+		where board_no = #{value}
+	</delete>
+	
+	<select id="getRowCount" resultType="int">
+		select count(*)
+		from sample_boards
+		where board_deleted = 'N'
+	</select>
+	
+</mapper>

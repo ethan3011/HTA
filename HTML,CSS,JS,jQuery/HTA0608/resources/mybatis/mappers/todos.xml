@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="todos">
+
+	<select id="getLast5Todos" resultType="com.sample.vo.Todo">
+		select *
+		from
+			(select
+				TODO_NO					as no,
+				TODO_TITLE				as title,
+				TODO_WRITER				as writer,
+				TODO_DAY				as day,
+				TODO_STATUS				as status,
+				TODO_TEXT				as text,
+				TODO_CREATED_DATE		as createdDate,
+				TODO_COMPLETED_DATE		as completedDate,
+				TODO_DELETED_DATE		as deletedDate
+			from
+				sample_todos
+			order by
+				TODO_NO desc)
+		
+		where
+			rownum &lt;= 5
+	</select>
+	
+	<select id="getTodosByUserId" parameterType="string" resultType="com.sample.vo.Todo">
+		select
+			TODO_NO					as no,
+			TODO_TITLE				as title,
+			TODO_WRITER				as writer,
+			TODO_DAY				as day,
+			TODO_STATUS				as status,
+			TODO_TEXT				as text,
+			TODO_CREATED_DATE		as createdDate,
+			TODO_COMPLETED_DATE		as completedDate,
+			TODO_DELETED_DATE		as deletedDate
+		from
+			sample_todos
+		where
+			TODO_WRITER = #{value}
+		order by
+			TODO_NO desc
+	</select>
+	
+	<select id="getTodoByNo" parameterType="int" resultType="com.sample.vo.Todo">
+		select
+			TODO_NO					as no,
+			TODO_TITLE				as title,
+			TODO_WRITER				as writer,
+			TODO_DAY				as day,
+			TODO_STATUS				as status,
+			TODO_TEXT				as text,
+			TODO_CREATED_DATE		as createdDate,
+			TODO_COMPLETED_DATE		as completedDate,
+			TODO_DELETED_DATE		as deletedDate
+		from
+			sample_todos
+		where
+			TODO_NO = #{value}
+	</select>
+	
+	<update id="updateTodo" parameterType="com.sample.vo.Todo">
+		update
+			sample_todos
+		set
+			TODO_TITLE				=	#{title},
+			TODO_DAY				=	#{day},
+			TODO_STATUS				=	#{status},
+			TODO_TEXT				=	#{text},
+			TODO_COMPLETED_DATE		=	#{completedDate},
+			TODO_DELETED_DATE		=	#{deletedDate}
+		where
+			TODO_NO = #{no}
+	</update>
+	
+</mapper>

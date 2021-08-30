@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+* {
+      box-sizing: border-box;
+    }
+    .box { padding: 10px; margin: 10px; border: 1px solid black;}
+
+    #layout-box .box {margin: 5px 0;}
+    #header-box {
+      background-color: grey;
+      color: white;
+      padding: 15px;
+    }
+    #left-box {
+      float: left;
+      width: 25%;
+      padding: 15px;
+    }
+    #right-box {
+      float: right;
+      width: 25%;
+      padding: 15px;
+    }
+    #center-box {
+      float: left;
+      width: 50%;
+      padding: 15px;
+    }
+    #footer-box {
+      clear: both;
+      background-color: grey;
+      color: white;
+      padding: 15px;
+    }
+    
+        .text-box {
+            border: 1px solid lightgray;
+            padding: 10px;
+        }
+
+        .div-box {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        .red-box {
+            background-color:red;
+            height:100px;
+            width:100px;
+            color:white;
+            font-weight:bold;
+            font-size:20px;
+            text-align:center;
+            line-height:100px;
+        }
+        .black-box {
+            background-color:black;
+            height:100px;
+            width:100px;
+            color:white;
+            font-weight:bold;
+            font-size:20px;
+            text-align:center;
+            line-height:100px;
+        }
+        
+        .pink-box {
+            background-color:pink;
+            height:100px;
+            width:100px;
+            color:white;
+            font-weight:bold;
+            font-size:20px;
+            text-align:center;
+            line-height:100px;
+        }
+
+        #first-box {
+            position: relative;
+            left:300px;
+            top:50px;
+        }
+
+        #second-box {
+            position:relative;
+            left:350px;
+            top:100px;
+        }
+
+        #third-box {
+            position:relative;
+            left:50px;
+            bottom:80px;
+        }
+
+        #outline-box {
+            position:relative;
+            border: 5px solid green;
+            height:500px;
+            width:500px;
+            left:400px;
+            top:100px;
+        }
+
+        #outline-box .black-box {
+            position:absolute;
+            border:5px solid hotpink;
+            left:200px;
+            bottom:200px;
+        }
+
+        #fixed-outline-box {
+            position:fixed;
+            border:3px solid hotpink;
+            width:80%;
+            height:30%;
+            top:45%;
+            right:8%;
+        }
+        .news {
+            background-color:antiquewhite;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        h4 {
+            font-weight:bold;
+            color:red;
+            font-size: 30px;
+            margin-left:5px;
+            margin-bottom:3px;
+            margin-top:3px;
+        }
+        ul {
+            background-color:white
+        }
+        #Relationship-news {
+            color:blue;
+        }
+
+        .pp {
+            color:papayawhip;
+            background-color:rgb(255, 0, 149);
+            border: 2px black;
+            padding: 15px;
+            display:none;
+        }
+
+        .test-class {
+            color:white;
+            background-color:burlywood;
+            border: 5px dotted blue;
+        }
+
+        #test-class-id {
+            color:black;
+            background-color:white;
+            font-weight:bold;
+            background-color:cadetblue;
+        }
+
+        .test-class .test-id-class {
+            color:oragne;
+            background-color:black;
+        }
+
+        .test-class #test-id {
+            color:blanchedalmond;
+            font-weight:bold;
+            background-color:brown;
+            border: 10px solid white;
+            display:block;
+
+        }
+    </style>
+</head>
+<body>
+	<h3>div 연습하기</h3>
+	<!-- div 안에 ul,li 생성해서 뉴스,연예,스포츠 만들기-->
+    <div>
+        <h4>뉴스</h4>
+        <ul>
+            <li>L에어태그 개발자 모드 발견, 어떤 설정 가능할까</li>
+            <li> 무선 이어폰, 2년마다 교체해야 할까? Yes or No</li>
+            <li>구글 픽셀 폰 사진 샘플 유출...카메라 스펙↑</li>
+            <li>지긋지긋한 광고 안 보려면? 광고 차단에 대한 모든 것</li>
+            <li>최신 ‘윈도우 10 업데이트’ 게임성능 떨어뜨린다...해결 방법은?</li>
+        </ul>
+    </div>
+
+    <div>
+        <h4>연예</h4>
+        <ul>
+            <li>[정보충전] 요리에 과학을 더하다…'분자 요리'</li>
+            <li>"'기생충'만큼 유명한 한국요리"…브라질 신문, 한식</li>
+            <li>'맥주·볶음밥'까지…똑똑한 요리 로봇 어디까지?</li>
+            <li>[뉴스터치] 고급 호텔 풀코스 요리도 배달 시대</li>
+            <li>탄수화물 요리, 에어프라이어선 '많은 양+적당 시간'</li>
+        </ul>
+    </div>
+
+    <div>
+        <h4>스포츠</h4>
+        <ul>
+            <li>[단독]용산기지 스포츠필드·소프트볼장 연내 개방...10만㎡ 공원 뜬다 - 조선비즈</li>
+            <li>Joe Valerio, Sports Reporters producer for majority of its 30-year run on ESPN, dies at age 71 </li>
+            <li>What to watch for in WPIAL sports for May 17, 2021</li>
+            <li>도 넘은 악플에…스포츠 뉴스 댓글도 '폐지'</li>
+            <li>영주시, 스포츠 컴플렉스(가칭 생활체육공원) 명칭 공모합니다</li>
+        <ul>
+
+    </div>
+
+	<h3>id와 class 사용하기</h3>
+	<!-- div 안에 ul,li 생성해서 뉴스,연예,스포츠 만들기-->
+	<!-- div에 id, class 속성주기-->
+
+    <div id="IT-news" class="news">
+        <h4 class="news-title">뉴스</h4>
+        <ul>
+            <li>L에어태그 개발자 모드 발견, 어떤 설정 가능할까</li>
+            <li> 무선 이어폰, 2년마다 교체해야 할까? Yes or No</li>
+            <li>구글 픽셀 폰 사진 샘플 유출...카메라 스펙↑</li>
+            <li>지긋지긋한 광고 안 보려면? 광고 차단에 대한 모든 것</li>
+            <li>최신 ‘윈도우 10 업데이트’ 게임성능 떨어뜨린다...해결 방법은?</li>
+        </ul>
+    </div>
+
+    <div id="Relationship-news" class="news">
+        <h4 class="news-title">연예</h4>
+        <ul>
+            <li>[정보충전] 요리에 과학을 더하다…'분자 요리'</li>
+            <li>"'기생충'만큼 유명한 한국요리"…브라질 신문, 한식</li>
+            <li>'맥주·볶음밥'까지…똑똑한 요리 로봇 어디까지?</li>
+            <li>[뉴스터치] 고급 호텔 풀코스 요리도 배달 시대</li>
+            <li>탄수화물 요리, 에어프라이어선 '많은 양+적당 시간'</li>
+        </ul>
+    </div>
+
+    <div id="Sports-news id" class="news">
+        <h4 class="news-title">스포츠</h4>
+        <ul>
+            <li>[단독]용산기지 스포츠필드·소프트볼장 연내 개방...10만㎡ 공원 뜬다 - 조선비즈</li>
+            <li>Joe Valerio, Sports Reporters producer for majority of its 30-year run on ESPN, dies at age 71 </li>
+            <li>What to watch for in WPIAL sports for May 17, 2021</li>
+            <li>도 넘은 악플에…스포츠 뉴스 댓글도 '폐지'</li>
+            <li>영주시, 스포츠 컴플렉스(가칭 생활체육공원) 명칭 공모합니다</li>
+        <ul>
+
+    </div>
+	
+	<h1>외부 스타일시트파일 사용하기</h1>
+    	<link rel="stylesheet" href="StyleSheet.css";>
+        <div class="back";>
+ 	<h3 class="primary-text">책정보</h3>
+     <dl>
+         <dt>제목</dt><dd class="small-text">어린이도 부모님도 알아야 할 <span class="big-text">코딩하기 전 코딩책</span> 코딩 기술을 배우기 전에 먼저 보는 진짜 코딩 교양</dd>
+         <dt>저자</dt><dd class="small-text">박준석, 오정석 글/김혜령</dd>
+         <dt>출판사</dt><dd class="small-text">동아시아 사이언스</dd>
+         <dt>정가</dt><dd class="small-text">12,000원</dd>
+         <dt>판매가</dt><dd class="small-text"><span class="important-text">10,800</span>원</dd>
+     </dl>
+    </div>
+	<h1>CSS 선택자 사용하기</h1>
+	<p>기본 선택자, 자손 선택자, 자식 선택자, 형제 선택자 연습</p>
+
+	<h1>선택자 우선순위</h1>
+	<h3>선택자 우선순위 연습하기</h3>
+    <!-- 선택자 우선순위 
+            #아이디선택자 > .클래스선택자 > 태그선택자 > * -->
+    <p>선택자 우선순위가 적용되는곳</p>
+
+    <div class="test-class" id="test-class-id">
+        <p class="test-id-class" id="test-id">선택자 우선순위가 적용되는곳</p>
+    </div>
+
+	<h1>CSS position</h1>
+	<!-- box 3개를 만들고 각각 position : static, relative, absolute, fixed 해보기-->
+
+    <h3>static type</h3>
+    <div class="red-box"></div>
+    <div class="black-box"></div>
+    <div class="pink-box"></div>
+
+    <h3> relative type</h3>
+    <div class="red-box" id="first-box">박스1</div>
+    <div class="black-box" id="second-box">박스2</div>
+    <div class="pink-box" id="third-box">박스3</div>
+
+    <h3>absolute type</h3>
+    <div id="outline-box">
+        <div class="black-box"></div>
+    </div>
+
+    <h3>fixed type</h3>
+    <div id="fixed-outline-box"></div>
+    
+
+
+	<h1>float 프로퍼티</h1>
+	<!-- header, left menu, right menu, content, footer 생성 후 float으로 정렬하기-->
+    <div class="div-box">
+        <p class="text-box">
+            <img src="../images/04.jpg" alt="이수영사진4" width="100px" height="100px" style="float: left;">
+            <img src="../images/02.jpg" alt="이수영사진2" width="100px" height="100px" style="float: right;">
+            <img src="../images/01.jpg" alt="이수영사진1" width="100px" height="100px" style="float: left;">
+            <img src="../images/04.jpg" alt="이수영사진3" width="100px" height="100px" style="float: right;">
+            동해물과 백두산이 마르고 닳도록  하느님이 보우하사 우리나라 만세.
+            (후렴) 무궁화 삼천리 화려강산 대한 사람, 대한으로 길이 보전하세
+            남산 위에 저 소나무, 철갑을 두른 듯 바람서리 불변함은 우리 기상일세.
+            (후렴) 무궁화 삼천리 화려강산 대한 사람, 대한으로 길이 보전하세
+            가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세.
+            (후렴) 무궁화 삼천리 화려강산 대한 사람, 대한으로 길이 보전하세
+            이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나 나라 사랑하세.
+            (후렴) 무궁화 삼천리 화려강산 대한 사람, 대한으로 길이 보전하세
+        </p>
+    </div>
+
+    <div id="layout-box">
+        <div id="header-box" class="box">Header</div>
+        <div id="left-box" class="box">left-box</div>
+        <div id="center-box" class="box">center-box</div>
+        <div id="right-box" class="box">right-box</div>
+        <div id="footer-box" class="box">fotter-box</div>
+    </div>     
+</body>
+</html>

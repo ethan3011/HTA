@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf=8">
+    <title>HTA 0513 Review</title>
+</head>
+<body>
+
+    <h1>링크 연습하기</h1>
+    <a href="https://www.google.com">구글로 바로가기</a> <br />
+    <a href="https://www.naver.com">네이버로 바로가기</a> <br />
+    <a href="https://www.daum.net">다음으로 바로가기</a> <br />
+
+   <h4>링크된 페이지를 새 탭이나 새 창에서 열기</h4>
+    <a href="https://www.google.com" target="_blank">구글 새창으로 이동하기</a><br />
+    <a href="https://www.naver.com"  target="_blank">네이버 새창으로 이동하기</a><br />
+    <a href="https://wwww.daum.net"  target="_blank">다음 새창으로 이동하기</a><br />
+
+   <h4>링크에 풍선도움말 표시하기</h4>
+    <a href="https://www.google.com" target="_blank" title="새창으로 구글에 이동합니다.">링크1</a>
+    <a href="https://www.naver.com"  target="_blank" title="새창으로 네이버에 이동합니다.">링크2</a>
+    <a href="https://www.daum.net"   target="_blank" title="새창으로 다음에 이동합니다">링크3</a>
+
+   <h4>이미지에 링크 생성하기</h4>
+    <a href="https://www.google.com" target="_blank" title="이미지를 클릭하면 구글로 이동합니다."><img src="images/01.jpg" width="100" height="80" /></a>
+    <a href="https://www.naver.com"  target="_blank" title="이미지를 클릭하면 네이버로 이동합니다."><img src="images/02.jpg" width="100" height="80" /></a>
+    <a href="Https://www.daum.net"   target="_blank" title="이미지를 클릭하면 다음으로 이동합니다."><img src="images/03.jpg" width="100" height="80" /></a>
+
+    <h4>같은 페이지내에서 이동하는 링크 생성하기</h4>
+
+
+
+   <h1>폼요소 연습하기</h1>
+
+
+   <h3>input 태그 연습하기(text,password,date,datetime-local,number,submit,button)</h3>
+    <form method="POST" action="new_user.jsp">
+        <p>이름 <br />
+            <input type="text" name="username" placeholder="이름을 입력하세요" /><br />
+           아이디<br />
+            <input type="text" name="userid" placeholder="아이디를 입력하세요" /><br />
+           비밀번호<br />
+            <input type="password" name="userPWD" placeholder="비밀번호를 입력하세요" /><br />
+           비밀번호확인<br />
+            <input type="password" name="confirmPwd" placehoder="다시 한번 입력해주세요" /><br />
+           생일 <br />
+            <input type="date" name="birthday" /><br />
+           날짜시간입력<br />
+            <input type="datetime-local" name="nowtime" /><br />
+           연락처
+            <input type="number" name="contactnumber" placeholder="숫자만 입력해주세요 ex)01012345678" /><br />
+            <input type="submit" value="등록"/> <input type="reset" value="취소" />
+            <!-- 그냥 버튼은 미설정시 기존에 등록되어있는 첫번째 버튼 기능이 작동됨. -->
+            <button><버튼/버튼으로 설정[작동]></button>
+            <button type="button">type="button"으로 설정 [비작동]</button>
+            </p>        
+    </form>
+
+   <h3>checkbox 연습하기</h3>
+    <p>
+    <form>
+        <input type="checkbox" name="chicken" value="튀김" />프라이드치킨
+        <input type="checkbox" name="chicken" value="양념" />양념치킨
+        <input type="checkbox" name="chicken" value="간장" />간장치킨
+        <input type="checkbox" name="chicken" value="매운" disabled/>매운치킨[품절]
+        <input type="checkbox" name="chicken" value="치즈" />눈꽃치킨
+    </form>
+   <h3>radio button 연습하기</h3>
+    <form>
+        <input type="radio" name="pizza" value="페퍼로니" checked/>페퍼로니피자
+        <input type="radio" name="pizza" value="불고기" />불고기피자
+        <input type="radio" name="pizza" value="불닭" disabled/>불닭피자[품절]
+        <input type="radio" name="pizza" value="고구마" />고구마피자
+        <input type="radio" name="pizza" value="감자" />감자피자
+    </form>
+
+   <h3>selectbox 연습하기</h3>
+    <form>
+        <select name="판매점">
+            <option value="seoul">서울</option>
+            <option value="busan">부산</option>
+            <option value="gangwon">강원</option>
+            <option value="cungju" selected>충주</option>
+            <option value="changwon">창원</option>
+            <option value="gyeongsang">경상</option>
+            <option value="dereal" disabled>중데렐</option>
+        </select>
+    </form>
+   <h3>textarea 연습하기</h3>
+    <form>
+        <textarea name="introducs" rows="10" cols="60" placeholder="자기소개 입력하기"></textarea>
+        <textarea name="disablenow" rows="10" cols="60" readonly>지금은 입력이 불가능합니다.</textarea>
+    </form>
+   <h3>파일첨부하기</h3>
+    <form>
+        <input type="file" name="photo" />
+    </form>
+   <h3>회원가입 폼</h3>
+    <form method="POST" action="registereation.jsp" enctype="multipart/form-data">
+        <label>성함</label><br />
+        <input type="text" name="username" placeholder="이름을 입력하세요." /><br />
+        <label>아이디</label><br />
+        <input type="text" name="userid" placeholder="아이디를 입력하세요." /><br />
+        <lable>비밀번호</lable><br />
+        <input type="password" name="userpwd" placeholder="비밀번호를 입력하세요" /><br />
+        <label>비밀번호 재입력</label><br />
+        <input type="password" name="confirmpwd" placeholder="다시 입력해주세요" /><br />
+        <br />
+        <label>성별</label><br />
+        <input type="radio" name="gender" value="남자" checked/>남성 <input type="radio" name="gender" value="여자" />여성<br /><br />
+        <label>핸드폰 번호</label> <br />
+        <input type="text" name="phone" placeholder="번호를 입력해주세요" /><br />
+        <br />
+        <label>이메일</label><br />
+        <input type="email" name="useremail" /><br />
+        <br />
+        <label>거주지</label><br />
+        <select>
+            <optgroup label ="서울">
+                <option name="gangnam">강남</option>
+                <option name="gangbook">강북</option>
+                <option name="gangse">강서</option>
+                <option name="gnagdong">강동</option>
+            </optgroup>
+            <optgroup label ="경기">
+                <option name="suwon">수원</option>
+                <option name="pyeongtaek">평택</option>
+                <option name="osan">오산</option>
+                <option name="chunan">천안</option>
+            </optgroup>
+        </select>
+        <br/>
+        <br />
+        <label>취미 (중복선택 가능)</label><br/>
+        <input type="checkbox" name="habbit" value="soccer" />축구
+        <input type="checkbox" name="habbit" value="baseball" />야구
+        <input type="checkbox" name="habbit" value="basketball" />농구
+        <input type="checkbox" name="habbit" value="valliball" />배구
+        <br />
+        <br />
+        <lable>프로필 사진 설정</lable><br />
+        <input type="file" name="profilePhoto" /><br /><br /><br />
+
+        <input type="submit" value="회원가입" /> <input type="reset" value="취소" />
+    </form>
+
+   <h1>문자 포맷팅 태그 연습</h1>
+
+   <h3>b와 strong 태그</h3>
+   <p>b태그는 문자를 <b>굵고 진하게</b> 표현합니다.</p>
+   <p>string 태그는 문자를 <strong>매우 중요한 텍스트를 </strong> 표현합니다.</p>
+
+   <h3>i(italic의 약자)와 em(emphasis의 약자) 태그</h3>
+   <p>i태그는 문자에 <i>기울어짐을</i> 추가합니다.</p>
+   <p>em태그도 문자에 <em>기울어짐을(강조할내용)</em> 추가합니다.</p>
+
+   <h3>small, mark, del 태그</h3>
+   <p>small 태그는 글자를 <small>작게작게</small> 표현합니다.</p>
+   <p>mark 태그는 글자에 <mark>노란노란색 하이라이트</mark>를 표현합니다.</p>
+   <p>del 태그는 글자에 <del>취소취소선</del>을 표현합니다.</p>
+
+   <h1>태그의 style 속성</h1>
+
+   <h3>색 변경하기</h3>
+    <p style="color: red;"> <strong>color:red 형식으로 글자를 빨간색으로 표현하기</strong></p>
+    <p style="color: rgb(0, 255, 0)";><em>color:rgb(255,0,0)형식으로 글자를 녹색으로 표현하기</em></p>
+    <p style="color: #0000ff";><small>color:#0000ff 형식으로 글자를 파란색으로 표현하기</small></p>
+    
+   <h3>테두리</h3>
+   <p style="border: 1px solid">글자에 solid 타입 테두리 넣기</p>
+   <p style="border: 2px dotted">글자에 dotted 타입 테두리 넣기</p>
+   <p style="border: 3px dashed">글자에 dashed 타입 테두리 넣기</p>
+
+   <p style="border: 5px solid; border-color: red; background: yellow;" >solid 타입의 5px테두리, 빨간줄, 노란배경</p>
+   <p style="border: 3px dotted; border-color:aqua; background-color:darkkhaki;">dotted타입의 3px 테두리, 아쿠아선, 카키색배경</p>
+   <p style="border: 4px dashed; border-color:rgb(0, 238, 255); background-color:deeppink;">dashed타입의 4px 테두리, 연색선, 핑크색배경</p>
+
+   <h3>여백</h3>
+   <p style="margin: 100px; background-color: deeppink;">top,bottom,left,right에 100px 여백주기</p>
+   <p style="margin-top: 50px; background-color:tomato;">top쪽에 50px 여백주기</p>
+   <p style="margin-bottom: 70px; background-color:rgb(0, 255, 179);">bottom 쪽에 70px 여백주기</p>
+   <p style="margin-left: 300px; background-color:crimson;">left쪽에 300px 여백주기</p>
+   <p style="margin-right: 500px; background-color:gold;">right쪽에 500px 여백주기</p>
+   <p style="margin: 140px 180px; background-color:hotpink;">top, bottom에 140px, left,right에 180px 주기</p>
+
+
+   <h3>패딩</h3>
+   <p style="padding: 100px; background-color:teal;">top,bottom,left,right에 100px padding 주기</p>
+   <p style="padding-top: 120px; background-color:yellow;">top 에 120px padding 주기</p>
+   <p style="padding-bottom: 140px; background-color:cyan;">bottom에 140px padding 주기</p>
+   <p style="padding-left: 160px; background-color:darkgrey;">left에 160px padding 주기</p>
+   <p style="padding-right: 180px; background-color:darkorange;">right에 180px padding 주기</p>
+   <p style="padding: 120px 140px 160px 180px; background-color:hotpink;">top에 120px right에 140px bottom에 160px left에 180px 주기</p>
+
+   <h3>텍스트</h3>
+   <p style="text-align: left;">텍스트를 좌측으로 정렬하기</p>
+   <p style="text-align: center;">텍스트를 중앙에 정렬하기</p>
+   <p style="text-align: right;">텍스트를 우측으로 정렬하기</p>
+
+   <p style="font-weight: lighter;">텍스트를 얇게 표시하기</p>
+   <p style="font-weight: normal;">텍스트를 보통으로 표시하기</p>
+   <p style="font-weight: bold;">텍스트를 진하게 표시하기</p>
+
+   <p style="font-size: 30px;">텍스트를 30px 사이즈로 표시하기</p>
+   <p style="font-size: 50px;">텍스트를 50px 사이즈로 표시하기</p>
+   <p style="font-size: 70px;">텍스트를 70px 사이즈로 표시하기</p>
+
+   <h1>인라인 태그(엘리먼트)와 블록 태그(엘리먼트)</h1>
+   <h3 style="background-color: yellow;">블록 엘리먼트H1~6</h3>
+   <p style="background-color: hotpink;">블록 엘리먼트P</p>
+   <ui >
+       <li style="background-color:lemonchiffon;">블록 엘리먼트 ui,li</li>
+   </ui>
+   <ol style="background-color:lemonchiffon;">
+       <li >블록 엘리먼트 ol,li</li>
+   </ol>
+   <dl style="background-color:rgb(255, 230, 0);">
+       <dt>블록 엘리먼트 dl,dt,dd</dt>
+       <dd>블록 엘리먼트 dl,dt,dd</dd>
+   </dl>
+   <table border=3 style="background-color:green;">
+       <thead>
+           <th>블록 엘리먼트 table,thead,th</th>
+           <th>블록 엘리먼트 table,thead,th</th>
+       </thead>
+       <tbody>
+           <td>블록 엘리먼트 table/tbody</td>
+           <td>블록 엘리먼트 table/tbody</td>
+       </tbody>
+       <tfoot>
+        <td>블록 엘리먼트 tfoot/td</td>
+        <td>블록 엘리먼트 tfoot/td</td>
+       </tfoot>
+   </table>
+
+   <form style="background-color:mediumpurple;">
+       <p>블록 엘리먼트 form</p>
+       <p>블록 엘리먼트 form</p>
+       <p>블록 엘리먼트 form</p>
+   </form>
+
+   <h3>인라인 엘리먼트</h3>
+   <a href="https://wwww.naver.com" style="background-color:mediumpurple;">inline 엘리먼트 a</a>
+   <table>
+       <input type="text" name="inlineTest" value="inline 엘리먼트 input" style="background-color:yellow;">
+       <button style="background-color: yellow;">inline 엘리먼트 button</button>
+       <input type="file" name="filecheck" style="background-color: green;">
+   </table>
+   <select style="background-color: yellow;">
+       <option>inline 엘리먼트 select</option>
+   </select>
+   <textarea name="test" rows="10" cols="50" style="background-color: rgb(0, 255, 115);">inline 엘리먼트 textarea</textarea>
+   <label style="background-color: rgb(0, 238, 255);">inline 엘리먼트 label</label>
+   <strong style="background-color:rosybrown;">inline 엘리먼트 strong</strong>
+   <b style="background-color:rosybrown;">inline 엘리먼트 b</b>
+   <i style="background: royalblue;">inline 엘리먼트 i</i>
+   <em style="background: royalblue;">inline 엘리먼트 em</em>
+   <small style="background-color: royalblue;">inline 엘리먼트 small</small>
+   <del style="background-color:seagreen">inline 엘리먼트 del</del>
+   <mark style="background-color:seashell">inline 엘리먼트 mark</mark>
+
+   <h3>화면표시방법 변경하기</h3>
+   <p style="background-color: rgb(78, 172, 35); display:none">display로 감추기 none</p>
+   <p style="background-color: rgb(78, 172, 35); display:block;">display 사용하기 block</p>
+   <p style="background-color: rgb(78, 172, 35);">display 사용 안하기</p>
+
+   <h3>사용자와 상호작용해서 표시방법 변경하기</h3>
+   <p id="content1" style="display:none;">첫번째 콘텐츠</p>
+   <p id="content2" style="display:none;">두번째 콘텐츠</p>
+   <p>
+       <button onclick="displayNo1()">버튼1</button>
+       <button onclick="displayNo2()">버튼2</button>
+   </p>
+   <script>
+       function displayNo1(){
+        document.querySelector("#content1").style.display = "block";
+        document.querySelector("#content2").style.display = "none";
+       }
+       function displayNo2(){
+        document.querySelector("#content1").style.display = "none";
+        document.querySelector("#content2").style.display = "block";
+       }
+   </script>
+</body>
+</html> 

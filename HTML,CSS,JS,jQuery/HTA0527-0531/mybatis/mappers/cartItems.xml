@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cateItems">
+
+	<delete id="deleteCartItem" parameterType="int">
+		delete sample_cart_items
+		where item_no = #{value}
+	</delete>
+
+
+	<insert id="insertCartItem" parameterType="com.sample.vo.CartItem">
+		insert into sample_cart_items
+		(item_no, user_id, product_no)
+		values
+		(cartItem_seq.nextval, #{userId}, #{productNo})
+	</insert>
+				
+	<select id="getCartItemByNo" parameterType="int" resultType="com.sample.vo.CartItem">
+		select  ITEM_NO as no,
+			    USER_ID as userId,
+			    PRODUCT_NO as productNo,
+			    ITEM_AMOUNT as amount,
+			    ITEM_CREATED_DATE as createdDate
+		from SAMPLE_CART_ITEMS
+		where ITEM_NO = #{value}	
+	</select>
+	
+	<select id="getCartItemByUserId" parameterType="string" resultType="com.sample.dto.CartItemListDto">
+		select	 A.item_no 					as no,
+				 B.product_no 				as productNo,
+				 B.product_name				as productName,
+				 B.product_maker 			as maker,
+				 B.product_price			as price,
+				 B.product_discount_price 	as discountPrice,
+				 A.item_amount				as amount
+		from sample_cart_items A, sample_products B
+		where A.user_id = #{value}
+		and A.product_no = B.product_no
+		order by A.product_no desc
+	</select>
+
+	
+
+</mapper>

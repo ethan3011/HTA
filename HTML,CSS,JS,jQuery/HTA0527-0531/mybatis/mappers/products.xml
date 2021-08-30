@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="products">
+
+	<!-- 
+		새 상품정보를 추가하는 SQL 매핑정보 정의하기
+		1. INSERT 구문을 정의한다.
+		2. INSERT 구문의 식별자 이름을 "insertProduct"로 정의한다.
+		3. INSERT 구문을 실행하는 필요한 값은 com.sample.vo.Product객체로 전달받는다.
+		4. INSERT 구문 실행시 #{}으로 표시된 곳에 실제값이 치환된다.
+			* #{name}은 com.sapme.vo.product객체의 name 변수에 저장된 값이 치환된다.
+			* #{maker}은 com.sapme.vo.product객체의 maker 변수에 저장된 값이 치환된다.
+			* #{category}은 com.sapme.vo.product객체의 category 변수에 저장된 값이 치환된다.
+			* #{price}은 com.sapme.vo.product객체의 price 변수에 저장된 값이 치환된다.
+			* #{discountPrice}은 com.sapme.vo.product객체의 discountPrice 변수에 저장된 값이 치환된다.
+			
+			public void InsertProduct(Product product) {
+				sqlSession.insert("insertProduct", product);
+	 		}
+	 -->	
+	 
+	 <insert id="insertProduct" parameterType="com.sample.vo.Product">
+	 	insert into sample_products
+	 	(product_no, product_name, product_maker, product_category, product_price, product_discount_price)
+	 	values
+	 	(product_seq.nextval, #{name}, #{maker}, #{category}, #{price}, #{discountPrice})
+	 </insert>
+	 
+	 <!-- 
+	 	상품정보를 삭제하는 SQL 매핑정보 정의하기
+	 	1. DELETE 구문을 정의한다.
+	 	2. DELETE 구문의 식별자 이름은 "deleteProduct"로 정의한다.
+	 	3. DELETE 구문을 실행하는 필요한 값은 정수값 하나다.
+	 	4. INSERT 구문 실행시#{}으로 표시된 곳에 실제값이 치환된다.
+	 		* #{value}에 정수값이 치환된다.
+	 		
+	 		public void deleteProduct(int no){
+	 		sqlSession.delete("deleteProduct", no);
+	 		}
+ 	 -->
+	  
+	  <delete id="deleteProduct" parameterType="int">
+	  	delete from sample_products
+	  	where product_no = #{value}
+	  </delete>
+	  
+	  <!-- 
+	  	상품정보를 변경하는 SQL 매핑정보 정의하기
+	  	1. UPDATE 구문을 정의한다.
+	  	2. UPDATE 구문의 식별자이름은 "updateProduct"로 정의한다.
+	  	3. UPDATE 구문이 실행하는데 필요한 값은 com.sample.vo.Product객체로 전달한다.
+	  	4. UPDATE 구문이 실행될 때 #{}가 실제값이 치환된다.
+	  		* #{멤버변수명}에서 변수명은 수정하는데 필요한 값을 가지고 있는 Product객체의
+	  		  멤버변수 이름이다.
+	  		  public void updateProduct(Product product){
+	  		  		sqlSession.update("updateProduct", product);	
+	  		  }
+	   -->
+	  
+	  <update id="updateProduct" parameterType="com.sample.vo.Product">
+	  	update sample_products
+	  	set
+		  	product_name = #{name},
+		  	product_maker = #{maker},
+		  	product_category = #{category},
+		  	product_price = #{price},
+		  	product_discount_price = #{discountPrice},
+		  	product_stock = #{stock},
+		  	product_sold_out = #{soldOut}
+	  	where product_no = #{no}
+	  </update>
+	  
+	  <!-- 
+	  		모든 상품정보를 조회하는 SQL 매핑구문 정의하기
+	  		1. SELECT 구문을 정의한다.
+	  		2. SLEECt 구문을 식별하는 이름은 "getAllProducts"다.
+	  		3. SELECT 구문은 치환시킬 값이 없어서 parameterType은 생략됬다.
+	  		4. SELECt 구문의 실행결과는 REsultType으로 지정된 com.sapme.vo.Product객체를 생성해서 저장한다.
+	  		5. SELECT 구문의 실행결과가 com.sample.vo.Product객체에 저장될 때는 컬럼명과 동일한 이름을 가진 멤버변수에 저장된다.
+	  		6. SELECT 구문의 실행결과가 여러 행이 조회된다면 selectList()메소드를 사용한다.
+	  			* selectList()메소드는 조회된 행의 갯수만큼 Product객체를 생성해서 각 행의 값을 저장한다.
+	  			* 생성된 모든 product객체는 List객체에 담긴다.
+	  		7. SELECT 구문이 실행이 완료되면 Product객체가 여러개 담긴 List객체가 반환된다.
+	  			public List<Product> getAllProduct(){
+	  				List<Product> products = sqlSession.selectlist("getAllProducts");
+	  			}
+	   -->
+	   <select id="getProducts" parameterType="map"  resultType="com.sample.vo.Product">
+	   	select product_no 					as no,
+		 	  product_name 					as name,
+		 	  product_maker 				as maker,
+		 	  product_category 				as category,
+	   		  product_price					as price,
+	   		  product_discount_price		as discountPrice,
+	   		  product_stock 				as stock,
+	   		  product_sold_out 				as soldOut,
+	   		  product_create_date 			as createDate
+	   	from (select row_number() over (order by product_no desc) row_no, A.*
+	   		  from sample_products A)
+	   	where row_no between #{beginIndex} and #{endIndex}
+	   	order by product_no desc
+		</select>
+		             
+		<!-- 
+			한 상품정보를 조회하는 SQL 매핑구문 정의하기
+			1. SELECT 구문을 정의한다.
+			2. SELECT 구문을 식별하는 일므은 "getProductByNo"다.
+			3. SLEECT 구문을 실행하는데 필요한 값은 정수값이다.
+			4. SELECT 구문이 실행될 때. #{value}에 정수값이 치환된다. 
+			5. SELECT 구문의 실행결과는 resultType으로 지정한 com.sample.vo.Product객체를 생성해서 저장한다.
+			6. SELECT 구문의 실행결과가 com.sample.vo.Product객체에 저장될 때는 컬럼명과 동일한 이름을 가진 멤버변수에 저장된다.
+			7. SELECT 구문의 실행결과가 한 행만 조회된다면 selectOne()메소드를 사용한다.
+			8. SELECT 구문이 실행이 완료되면 상품정보가 저장된 Product객체가 반환된다.
+				public Product getProductByNo(int no){
+					Product product = sqlSession.selectOne("getProductByNo", no)
+					return product;
+				}
+				
+		 -->
+		 
+		 <select id="getProductByNo" parameterType="int" resultType="com.sample.vo.Product">
+		 	  select product_no 			as no,
+		 	  product_maker 				as maker,
+		 	  product_name					as name,
+		 	  product_category 				as category,
+	   		  product_price					as price,
+	   		  product_discount_price		as discountPrice,
+	   		  product_stock 				as stock,
+	   		  product_sold_out 				as soldOut,
+	   		  product_create_date 			as createDate
+	 	   	  from sample_products
+	   		  where product_no = #{value}
+		</select>
+		
+		 <select id="getProductByName" parameterType="string" resultType="com.sample.vo.Product">
+		 	  select product_no 			as no,
+		 	  product_name 					as name,
+		 	  product_maker 				as maker,
+		 	  product_category 				as category,
+	   		  product_price					as price,
+	   		  product_discount_price		as discountPrice,
+	   		  product_stock 				as stock,
+	   		  product_sold_out 				as soldOut,
+	   		  product_create_date 			as createDate
+	   	from sample_products
+	   	where product_name = like '%' || #{value}
+		</select>
+		
+		<select id="getRowsCount" resultType="int">
+			select count(*)
+			from sample_products
+		</select>
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="repositories">
+
+	<select id="getAllItems" resultType="com.sample.vo.FileItem">
+		select
+			file_no				as no,
+			file_title			as title,
+			file_description	as description,
+			file_name			as fileName,
+			file_created_date	as createdDate
+		from sample_file_repositories
+		order by file_no desc
+	</select>
+	
+	<select id="getFileItemByNo" parameterType="int" resultType="com.sample.vo.FileItem">
+		select
+			file_no				as no,
+			file_title			as title,
+			file_description	as description,
+			file_name			as fileName,
+			file_created_date	as createdDate
+		from sample_file_repositories
+		where file_no = #{value}
+	</select>
+	
+	<insert id="insertFileItem" parameterType="com.sample.vo.FileItem">
+		insert into sample_file_repositories
+		(FILE_NO, FILE_TITLE, FILE_DESCRIPTION, FILE_NAME)
+		values
+		(FILE_SEQ.nextval, #{title}, #{description}, #{fileName})
+	</insert>
+
+</mapper>

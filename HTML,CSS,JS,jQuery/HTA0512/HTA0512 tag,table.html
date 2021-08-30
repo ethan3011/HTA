@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+
+<!-- h1~h6 태그 연습 -->
+      <!-- p 태그 연습 -->
+      <!-- list 태그 연습(ul, ol, li, dl, dt, dd) -->
+      <!-- table 태그 연습(table, thead, tbody, tfoot / rowspan, colspan)-->
+        <!-- img 태그 연습(src, alt, width, height)-->
+      <!-- a 태그 연습(href)-->
+
+    <head>
+        <mata charset="utf-8">
+        <title>HTA0512 HTML Reivew Tags</title>
+    </head>
+    <body>
+        <h1>치킨이란? </h1>
+        <p>치킨은 항상 옳다.</p>
+
+        <h2>치킨의 종류 </h2>
+        <p>후라이드치킨, 양념치킨</p>
+
+        <h3>치킨의 후라이드</h3>
+        <p>기름에 튀겨져 맛있다.</p>
+
+        <h4>치킨의 양념</h4>
+        <p>매운맛,단맛,짠맛,치즈맛 </p>
+
+        <h5>왜 치킨을 먹어야 하는가?</h5>
+        <p> 맛있기 때문이다.</p>
+
+        <h6>치킨은 비싼가?</h6>
+        <p> 비싸다.</p>
+ 
+        <h3>치킨의 종류</h3>
+        <!-- 번호가 생성되지 않고 ●가 생성되는 리스트 -->
+        <ul>
+            <li>후라이드치킨</li>
+            <li>양념치킨</li>
+            <li>간장치킨</li>
+            <li>매운치킨</li>
+            <li>삶은치킨</li>
+        </ul>
+
+        <h3>치킨의 가격</h3>
+        <!-- 번호가 생성되는 리스트 -->
+        <ol>
+            <li>후라이드치킨 : 15,000원</li>
+            <li>양념치킨 : 17,000원</li>
+            <li>간장치킨 : 17,000원</li>
+            <li>매운치킨 : 18,000원</li>
+            <li>삶은치킨 : 16,000원</li>
+        </ol>
+
+        <h3>치킨의 맛</h3>
+        <!-- dl태그를 생성해서 자식으로 dt를 범주로, dd는 내용을 들여쓰기 한다. -->
+        <dl>
+            <dt>후라이드치킨</dt>
+            <dd>크리스피 : 매우맛있음</dd>
+            <dd>눅눅함 : 맛있음</dd>
+            <dd>전날치킨 : 맛남</dd>
+            <br/>
+            <dt>양념치킨</dt>
+            <dd>일반양념 : 달달함</dd>
+            <dd>매운양념 : 매콤함</dd>
+            <dd>핵치킨 : 매워죽음</dd>
+        </dl>
+
+        <h1>치킨판매점 현황</h3>
+            
+        <table border="1" bordercolor="blue"> 
+            <thead>
+                <tr>
+                    <th>순번</th>
+                    <th>브랜드명</th>
+                    <th>대표상품</th>
+                    <th>현재근황</th>
+                    <th>평균가격</th>
+                    <th>배달비여부</th>
+                </tr>
+            </thead>
+            <tbad>
+                <tr>
+                    <td>1</td>
+                    <td>호식이두마리치킨</td>
+                    <td>순살두마리치킨</td>
+                    <td>현상유지</td>
+                    <td>23,000원</td>
+                    <td>거리별차등적용</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>푸라닭</td>
+                    <td>블랙올리오 치킨</td>
+                    <td>매출급상승</td>
+                    <td>19,900원</td>
+                    <td>거리별차등적용</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>또래오래</td>
+                    <td>양념치킨</td>
+                    <td>불황</td>
+                    <td>25,000원</td>
+                    <td>거리별차등적용</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>또봉이치킨</td>
+                    <td>순살1kg</td>
+                    <td>매출급상숭</td>
+                    <td>25,800원</td>
+                    <td>무료</td>
+                </tr>
+            </tbad>
+        </table>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h1>대기업 개발자 연봉순위</h1>
+
+        <table border="1" bordercolor="red">
+            <thead>
+                <tr>
+                    <th rowspan="2">순위</th>
+                    <th colspan="4">개발자 연봉중위값</th>
+                </tr>
+                <tr>
+                    <th>회사명</th>
+                    <th>연봉중위값</th>
+                    <th>년도</th>
+                    <th>주요사업</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>아마존</td>
+                    <td>9,100만원</td>
+                    <td rowspan="5">2021</td>
+                    <td>인터넷판매업</td>
+                </tr>
+              <tr>
+                <td>2</td>
+                <td>비바리퍼블리카</td>
+                <td>9,000만원</td>
+                <td>금융통신업</td>
+                
+             </tr>
+
+             <tr>
+                <td>3</td>
+                <td>구글코리아</td>
+                <td>8,400만원</td>
+                <td>검색서비스</td>
+             </tr>
+
+             <tr>
+                <td>4</td>
+                <td>트리플</td>
+                <td>8,250만원</td>
+                <td>온라인티켓판매</td>
+             </tr>
+            
+             <tr>
+                 <td>5</td>
+                 <td>SAP코리아</td>
+                 <td>8,070만원</td>
+                 <td>소프트웨어회사</td>
+             </tr>
+            </tbody>
+        </table>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <h1> 이미지 불러오기 연습</h1>
+        <img src="images/01.jpg" alt="이수영 사진1" width="600" height="350">
+        <img src="images/02.jpg" alt="이수영 사진2" width="600" height="350">
+        <img src="images/03.jpg" alt="이수영 사진3" width="600" height="350">
+        <img src="images/04.jpg" alt="이수영 사진4" width="600" height="350">
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h1> 이미지 밝기 조절하기</h1>
+        <h3>0.1밝기</h3>
+        <img src="images/01.jpg" alt="이수영 사진1" width="600" height="350" / style="opacity:0.1">
+        <h3>0.3밝기</h3>
+        <img src="images/02.jpg" alt="이수영 사진2" width="600" height="350" / style="opacity:0.3">
+        <h3>0.5밝기</h3>
+        <img src="images/03.jpg" alt="이수영 사진3" width="600" hegiht="350" / style="opacity:0.5">
+        <h3>0.7밝기</h3>
+        <img src="images/04.jpg" alt="이수영 사진4" width="600" height="350" / style="opacity:0.7">
+        <h3>0.9밝기</h3>
+        <img src="images/04.jpg" alt="이수영 사진4" width="600" height="350" / style="opacity:0.9">
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <h1>링크 생성하기 연습</h1>
+        <a href="https://www.google.com">구글</a>
+        <a href="https://www.facebook.com">페이스북</a>
+        <a href="https://www.naver.com">네이버</a>
+        <a href="https://duckduckgo.com/">덕덕고</a>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h1>특정 파일로 이동하는 링크 생성하기</h1>
+
+        <a href="../demo1.html">demo1로 돌아가기</a>
+        <a href="../demo2-heading.html">demo2로 돌아가기</a>
+        <a href="../demo3-p.html">demo3로 돌아가기</a>
+        <a href="../demo4-list.html">demo4로 돌아가기</a>
+        <a href="../demo5-table.html">demo5로 돌아가기</a>
+        <a href="../demo6-img.html">demo6로 돌아가기</a>
+        <a href="../demo7-link.html">demo7로 돌아가기</a>
+        <a href="../board/list.html">board안에 있는 list로 돌아가기</a>
+    </body>
+</html>
